@@ -1,10 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
 } from '@nestjs/common';
 
@@ -71,5 +73,18 @@ export class CoffeesController {
   @HttpCode(HttpStatus.GONE)
   oldEndpoint(@Body() body: string) {
     return body;
+  }
+
+  // ===== update requests
+  // would need a DTO file for a more real example so the body has proper types
+  @Patch(':coffeeId')
+  update(@Param('coffeeId') id: string, @Body() body: Object) {
+    return `will update ${id} with this body ${JSON.stringify(body)}`;
+  }
+
+  // ===== delete
+  @Delete(':coffeeId')
+  deleteOne(@Param('coffeeId') id: string) {
+    return `deleted coffee: ${id}`;
   }
 }
