@@ -1,4 +1,12 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+} from '@nestjs/common';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -49,5 +57,19 @@ export class CoffeesController {
     @Param('milkType') whateverMilk: string,
   ) {
     return `id: ${whateverCoffee}, size: ${whateverSize}, ${whateverMilk}`;
+  }
+
+  // ===== Body decorator ===
+  @Post()
+  addCoffee(@Body() body: string) {
+    return body;
+  }
+
+  // ===== HTTP response status codes
+  // example if you want this endpoint to always return a certain status code
+  @Post()
+  @HttpCode(HttpStatus.GONE)
+  oldEndpoint(@Body() body: string) {
+    return body;
   }
 }
