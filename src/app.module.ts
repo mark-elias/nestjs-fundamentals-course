@@ -3,6 +3,7 @@ import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { CoffeesModule } from './coffees/coffees.module.js';
+import { GuitarsModule } from './guitars/guitars.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -16,6 +17,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       serviceId: 'nestjs-fundamentals-course',
     }),
     CoffeesModule,
+    GuitarsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
