@@ -17,11 +17,19 @@ export class BeersService {
     return this.beers;
   }
 
+  // example of returning user friendly error messages
   findOne(id: string) {
+    // this will force an error, you can see the error in the console
+    // throw 'a random error';
+
     const coffee = this.beers.find((item) => item.id === +id);
+
+    // return an error if the coffee is not found
+    // nestjs has built in exception exception filters
     if (!coffee) {
       throw new NotFoundException(`Coffee #${id} not found`);
     }
+    // successful result
     return coffee;
   }
 
